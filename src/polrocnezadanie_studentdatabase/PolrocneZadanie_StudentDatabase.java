@@ -15,7 +15,7 @@ public class PolrocneZadanie_StudentDatabase {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.print("Zadaj Prve Cislo: ");
+        System.out.print("Zadaj Prve Cisloo: ");
     }
     
 }
