@@ -80,9 +80,14 @@ public class StudentDatabase extends javax.swing.JFrame {
                     columnData.add(rs.getString("studentid"));
                     columnData.add(rs.getString("firstname"));
                     columnData.add(rs.getString("surname"));
+                    columnData.add(rs.getString("dateofbirth"));
+                    columnData.add(rs.getString("class"));
                     columnData.add(rs.getString("address"));
                     columnData.add(rs.getString("gender"));
                     columnData.add(rs.getString("mobile"));
+                    columnData.add(rs.getString("foreignlang"));
+                    columnData.add(rs.getString("orientation"));
+                    columnData.add(rs.getString("sport"));
                     }
                     RecordTable.addRow(columnData);
             }
@@ -100,7 +105,6 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        cboGender = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtStudentID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -111,7 +115,19 @@ public class StudentDatabase extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMobile = new javax.swing.JTextField();
+        txtDateOfBirth = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        cboGender = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        cboSport = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        cboOrientation = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        cboForeignLang = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        cboClass = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -126,7 +142,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1430, 730));
+        setMinimumSize(new java.awt.Dimension(1450, 780));
         setPreferredSize(new java.awt.Dimension(1500, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,15 +150,8 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        cboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Muž", "Žena" }));
-        cboGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboGenderActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("Studentské ID");
+        jLabel2.setText("Studentské ID:");
 
         txtStudentID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +160,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel3.setText("Meno");
+        jLabel3.setText("Meno:");
 
         txtFirstname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +169,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setText("Priezvisko");
+        jLabel4.setText("Priezvisko:");
 
         txtSurname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +178,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel5.setText("Adresa");
+        jLabel5.setText("Adresa:");
 
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +187,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel6.setText("Tel. číslo");
+        jLabel6.setText("Tel. číslo:");
 
         txtMobile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,8 +195,119 @@ public class StudentDatabase extends javax.swing.JFrame {
             }
         });
 
+        txtDateOfBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateOfBirthActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel8.setText("Dat. narodenia:");
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel7.setText("Pohlavie");
+        jLabel7.setText("Pohlavie:");
+
+        cboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nezaradený/á", "Muž", "Žena" }));
+        cboGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboGenderActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel9.setText("Telocvik:");
+
+        cboSport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nezaradený/á", "Oslobodený/á", "Neoslobodený/á" }));
+        cboSport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSportActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel10.setText("Naboženstvo:");
+
+        cboOrientation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nezaradený/á", "náboženstvo", "etika" }));
+        cboOrientation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboOrientationActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel11.setText("Zahr. jazyk:");
+
+        cboForeignLang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nezaradený/á", "angličtina", "nemčina" }));
+        cboForeignLang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboForeignLangActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel12.setText("Trieda:");
+
+        cboClass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nezaradený/á", "I.AI", "I.BI", "I.CI", "I.AM", "I.AS", "I.AG", "I.AL", "II.AI", "II.BI", "II.CI", "II.AM", "II.AS", "II.AG", "II.AL", "III.AI", "III.BI", "III.CI", "III.AM", "III.AS", "III.AG", "III.AL", "IV.AI", "IV.BI", "IV.CI", "IV.AM", "IV.AS", "IV.AG", "IV.AL" }));
+        cboClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboClassActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(cboSport, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboClass, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboForeignLang, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboOrientation, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSport, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboOrientation, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboClass, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboForeignLang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -197,32 +317,36 @@ public class StudentDatabase extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSurname))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMobile)
-                            .addComponent(txtAddress)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtStudentID))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFirstname))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSurname))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAddress)
+                                    .addComponent(txtMobile))))
+                        .addGap(6, 6, 6))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtStudentID)))
-                .addContainerGap())
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(txtDateOfBirth)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,11 +371,13 @@ public class StudentDatabase extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -261,11 +387,11 @@ public class StudentDatabase extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "StudentID", "Meno", "Priezvisko", "Adresa", "Pohlavie", "Tel. číslo"
+                "ID", "StudentID", "Meno", "Priezvisko", "Dát. narodenia", "Trieda", "Adresa", "Pohlavie", "Tel. číslo", "Cuzdí jazyk", "Náuka", "Telocvik"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -285,14 +411,14 @@ public class StudentDatabase extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -363,14 +489,14 @@ public class StudentDatabase extends javax.swing.JFrame {
                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                     .addComponent(btnReset, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAddNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -385,48 +511,48 @@ public class StudentDatabase extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1410, 610));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1420, 650));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        jLabel1.setText("DATABÁZA ŠTUDENTOV");
+        jLabel1.setText("Systém na správu študentov");
         jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(338, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(437, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(379, 379, 379))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
 
@@ -467,6 +593,11 @@ public class StudentDatabase extends javax.swing.JFrame {
        txtAddress.setText("");
        cboGender.setSelectedIndex(0);
        txtMobile.setText("");
+       txtDateOfBirth.setText("");
+       cboClass.setSelectedIndex(0);
+       cboOrientation.setSelectedIndex(0);
+       cboSport.setSelectedIndex(0);
+       cboForeignLang.setSelectedIndex(0);
        
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
       RecordTable.setRowCount(0);
@@ -486,13 +617,18 @@ public class StudentDatabase extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("INSERT INTO studentdata(studentid, firstname, surname,address, gender, mobile)VALUES(?,?,?,?,?,?)");
+            pst = sqlConn.prepareStatement("INSERT INTO studentdata(studentid, firstname, surname, dateofbirth, class, address, gender, mobile, foreignlang, orientation, sport)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, txtStudentID.getText());
             pst.setString(2, txtFirstname.getText());
             pst.setString(3, txtSurname.getText());
-            pst.setString(4, txtAddress.getText());
-            pst.setString(5, (String)cboGender.getSelectedItem());
-            pst.setString(6, txtMobile.getText());
+            pst.setString(4, txtDateOfBirth.getText());
+            pst.setString(5, (String)cboClass.getSelectedItem());
+            pst.setString(6, txtAddress.getText());
+            pst.setString(7, (String)cboGender.getSelectedItem());
+            pst.setString(8, txtMobile.getText());
+            pst.setString(9, (String)cboForeignLang.getSelectedItem());
+            pst.setString(10, (String)cboOrientation.getSelectedItem());
+            pst.setString(11, (String)cboSport.getSelectedItem());
             
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Student Pridaný.");
@@ -517,9 +653,14 @@ public class StudentDatabase extends javax.swing.JFrame {
        txtStudentID.setText(RecordTable.getValueAt(SelectedRows,1).toString());
        txtFirstname.setText(RecordTable.getValueAt(SelectedRows,2).toString());
        txtSurname.setText(RecordTable.getValueAt(SelectedRows,3).toString());
-       txtAddress.setText(RecordTable.getValueAt(SelectedRows,4).toString());
-       cboGender.setSelectedItem(RecordTable.getValueAt(SelectedRows,5).toString());
-       txtMobile.setText(RecordTable.getValueAt(SelectedRows,6).toString());
+       txtDateOfBirth.setText(RecordTable.getValueAt(SelectedRows,4).toString());
+       cboClass.setSelectedItem(RecordTable.getValueAt(SelectedRows,5).toString());
+       txtAddress.setText(RecordTable.getValueAt(SelectedRows,6).toString());
+       cboGender.setSelectedItem(RecordTable.getValueAt(SelectedRows,7).toString());
+       txtMobile.setText(RecordTable.getValueAt(SelectedRows,8).toString());
+       cboForeignLang.setSelectedItem(RecordTable.getValueAt(SelectedRows,9).toString());
+       cboOrientation.setSelectedItem(RecordTable.getValueAt(SelectedRows,10).toString());
+       cboSport.setSelectedItem(RecordTable.getValueAt(SelectedRows,11).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     
@@ -534,17 +675,22 @@ public class StudentDatabase extends javax.swing.JFrame {
            int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("UPDATE studentdata set studentid = ? , firstname = ? , surname = ? , address = ? , gender = ? , mobile = ? WHERE id = ?");
+            pst = sqlConn.prepareStatement("UPDATE studentdata set studentid = ? , firstname = ? , surname = ? , dateofbirth = ?, class = ?, address = ? , gender = ? , mobile = ?, foreignlang = ?, orientation = ?, sport = ? WHERE id = ?");
             pst.setString(1, txtStudentID.getText());
             pst.setString(2, txtFirstname.getText());
             pst.setString(3, txtSurname.getText());
-            pst.setString(4, txtAddress.getText());
-            pst.setString(5, (String)cboGender.getSelectedItem());
-            pst.setString(6, txtMobile.getText());
-            pst.setInt(7, id);
+            pst.setString(4, txtDateOfBirth.getText());
+            pst.setString(5, (String)cboClass.getSelectedItem());
+            pst.setString(6, txtAddress.getText());
+            pst.setString(7, (String)cboGender.getSelectedItem());
+            pst.setString(8, txtMobile.getText());
+            pst.setString(9, (String)cboForeignLang.getSelectedItem());
+            pst.setString(10, (String)cboOrientation.getSelectedItem());
+            pst.setString(11, (String)cboSport.getSelectedItem());
+            pst.setInt(12, id);
             
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Student update done.");
+            JOptionPane.showMessageDialog(this, "Edit prebehol úspešne");
             UpdateDB();
         } 
         catch (ClassNotFoundException ex) {
@@ -565,6 +711,8 @@ public class StudentDatabase extends javax.swing.JFrame {
             System.err.format("Tlačiareň sa nenašla!", e.getMessage());
         
         }
+        
+  
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -587,12 +735,17 @@ public class StudentDatabase extends javax.swing.JFrame {
             
               UpdateDB();
             
-            txtStudentID.setText("");
+           txtStudentID.setText("");
        txtFirstname.setText("");
        txtSurname.setText("");
        txtAddress.setText("");
        cboGender.setSelectedIndex(0);
        txtMobile.setText("");
+       txtDateOfBirth.setText("");
+       cboClass.setSelectedIndex(0);
+       cboOrientation.setSelectedIndex(0);
+       cboSport.setSelectedIndex(0);
+       cboForeignLang.setSelectedIndex(0);
            }
        
            
@@ -603,6 +756,26 @@ public class StudentDatabase extends javax.swing.JFrame {
             System.err.println(ex);
         }  
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtDateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateOfBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateOfBirthActionPerformed
+
+    private void cboSportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSportActionPerformed
+
+    private void cboOrientationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboOrientationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboOrientationActionPerformed
+
+    private void cboForeignLangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboForeignLangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboForeignLangActionPerformed
+
+    private void cboClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboClassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -646,22 +819,33 @@ public class StudentDatabase extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cboClass;
+    private javax.swing.JComboBox<String> cboForeignLang;
     private javax.swing.JComboBox<String> cboGender;
+    private javax.swing.JComboBox<String> cboOrientation;
+    private javax.swing.JComboBox<String> cboSport;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtDateOfBirth;
     private javax.swing.JTextField txtFirstname;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtStudentID;
