@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -298,6 +299,11 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnReset.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         btnReset.setText("Reset");
@@ -317,6 +323,11 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         btnPrint.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         btnPrint.setText("tlačiť");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         btnAddNew.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnAddNew.setText("Nový študent");
@@ -457,7 +468,16 @@ public class StudentDatabase extends javax.swing.JFrame {
     }//GEN-LAST:event_cboGenderActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+        txtStudentID.setText("");
+       txtFirstname.setText("");
+       txtSurname.setText("");
+       txtAddress.setText("");
+       cboGender.setSelectedIndex(0);
+       txtMobile.setText("");
+       
+        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
+      RecordTable.setRowCount(0);
+      UpdateDB();
     }//GEN-LAST:event_btnResetActionPerformed
 
     
@@ -538,11 +558,58 @@ public class StudentDatabase extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             System.err.println(ex);
-        } 
-       
-       
-       
+        }  
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        MessageFormat header = new MessageFormat("Prebieha Tlač!");
+        MessageFormat footer = new MessageFormat("Prebieha Tlač!");
+        
+        try{
+           jTable1.print(JTable.PrintMode.NORMAL,header, footer);
+        }
+        catch(java.awt.print.PrinterException e){
+            System.err.format("Tlačiareň sa nenašla!", e.getMessage());
+        
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
+       int SelectedRows = jTable1.getSelectedRow();
+       
+       try{
+           int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+           
+           int deleteItem = JOptionPane.showConfirmDialog(null, "Potvrdiť vymazanie", "Varovanie" , JOptionPane.YES_NO_OPTION);
+                  
+           
+           if(deleteItem == JOptionPane.YES_OPTION){
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("DELETE FROM studentdata WHERE id = ?");
+            
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            
+              UpdateDB();
+            
+            txtStudentID.setText("");
+       txtFirstname.setText("");
+       txtSurname.setText("");
+       txtAddress.setText("");
+       cboGender.setSelectedIndex(0);
+       txtMobile.setText("");
+           }
+       
+           
+        } 
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }  
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
