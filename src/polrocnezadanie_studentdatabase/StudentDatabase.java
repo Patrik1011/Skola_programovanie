@@ -8,13 +8,18 @@ package polrocnezadanie_studentdatabase;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import java.sql.Connection;
+
+import com.mysql.jdbc.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -263,6 +268,11 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         btnAddNew.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnAddNew.setText("Nový študent");
+        btnAddNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNewActionPerformed(evt);
+            }
+        });
 
         btnExit.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         btnExit.setText("EXIT");
@@ -406,6 +416,29 @@ public class StudentDatabase extends javax.swing.JFrame {
            System.exit(0);
        }
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnAddNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewActionPerformed
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("INSERT INTO studentdata(studentid, firstname, surname,address, gender, mobile)VALUES(?,?,?,?,?,?)");
+            pst.setString(1, txtStudentID.getText());
+            pst.setString(2, txtFirstname.getText());
+            pst.setString(3, txtSurname.getText());
+            pst.setString(4, txtAddress.getText());
+            pst.setString(5, (String)cboGender.getSelectedItem());
+            pst.setString(6, txtMobile.getText());
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Student Pridaný.");
+        } 
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_btnAddNewActionPerformed
 
     /**
      * @param args the command line arguments
