@@ -1,0 +1,19 @@
+Aplikácia DataStudent Vám umožní spravovať databázu študentov, mať prehľad o ich údajoch, možnosť spravovať
+ich údaje. Študentov môžete kedykoľvek pridávať, editovať, ale aj mazať, ďalej obsahuje aj iné, nie až tak
+dôležité funkcie. Samotný program spustíte jednoducho cez "Spustiť program" a vypnete buď cez červený krížik,
+alebo stlačíte na "Ukončiť".
+
+DEFINÍCIE A POPIS JEDNOTLIVÝCH FUNKCIÍ PROGRAMU:
+
+PRIDAŤ ŠTUDENTA - Táto funkcia Vám umožní zaregistrovať nového študenta do systému.
+
+EDITOVAŤ - Funkcia, ktorá Vám umožní editovať študenta, príklad: Ak sa študent presťahoval, možete mu zmeniť adresu. Vyberte žiaka, vykonajte edit a stlačte tlačídlo Editovať.
+
+VYMAZAŤ - Študenta, môžte kedykoľvek vymazať z databázy, stačí si označiť daného žiaka a kliknúťna tlačídlo - Vymazať.
+
+VYČISTIŤ - Tlačídlo, ktoré Vám vymaže políčka v bočnom paneli. Stačí jednoducho kliknúť na tlačídlo
+
+TLAČIŤ - ak máte pripojenú tlačiareň, program si odkontroluje, či máte pripojené zariadenie na tlač, a podľa
+toho vyhodnotí, či Vás pustí do sekcie tlač alebo nie.
+
+ODÍSŤ - Uložia sa zmeny, program sa opýta, či naozaj chcete ukončiť program a vypne sa.
