@@ -49,7 +49,7 @@ public class NapovedaPage extends javax.swing.JFrame {
         }
    
         catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Txt súbor nebol načítaný!");
+            JOptionPane.showMessageDialog(null, "Txt súbor nebol načítaný!");
         }
     }
 
@@ -107,11 +107,13 @@ public class NapovedaPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /*BACK BUTTON NA HLAVNU STRANU*/
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.hide();
         new StartPage().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
-
+    /*KONIEC -- BACK BUTTON NA HLAVNU STRANU*/
     /**
      * @param args the command line arguments
      */

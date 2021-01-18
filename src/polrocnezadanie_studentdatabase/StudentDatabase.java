@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSetMetaData;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +50,7 @@ public class StudentDatabase extends javax.swing.JFrame {
      */
     public StudentDatabase() {
         initComponents();
+        //PO zapnuti sa updatne tabulka
         UpdateDB();
     }
 
@@ -84,7 +88,7 @@ public class StudentDatabase extends javax.swing.JFrame {
                     columnData.add(rs.getString("class"));
                     columnData.add(rs.getString("address"));
                     columnData.add(rs.getString("gender"));
-                    columnData.add(rs.getString("mobile"));
+                    columnData.add(rs.getInt("mobile"));
                     columnData.add(rs.getString("foreignlang"));
                     columnData.add(rs.getString("orientation"));
                     columnData.add(rs.getString("sport"));
@@ -97,6 +101,103 @@ public class StudentDatabase extends javax.swing.JFrame {
         } 
     
     }
+    
+    /*Metóda pre zapis Studenta do databazy a nasledne vypisanie do tabulky*/
+    public void AddStudent(){
+         
+        if(txtStudentID.getText().length() < 1 || txtFirstname.getText().length() < 1 || txtSurname.getText().length() < 1 || txtAddress.getText().length() < 1){
+             JOptionPane.showMessageDialog(null, "StudentID, Meno, Priezvisko, Adresa nemôžu byť prázdne!");
+            
+        }
+        
+        else{
+            
+            if(txtStudentID.getText().length() == 6 || txtMobile.getText().length() < 13 ){
+                try{
+
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
+                    pst = sqlConn.prepareStatement("INSERT INTO studentdata(studentid, firstname, surname, dateofbirth, class, address, gender, mobile, foreignlang, orientation, sport)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+                    pst.setString(1, txtStudentID.getText());
+                    pst.setString(2, txtFirstname.getText());
+                    pst.setString(3, txtSurname.getText());
+                    pst.setString(4, txtDateOfBirth.getText());
+                    pst.setString(5, (String)cboClass.getSelectedItem());
+                    pst.setString(6, txtAddress.getText());
+                    pst.setString(7, (String)cboGender.getSelectedItem());
+                    pst.setString(8, txtMobile.getText());
+                    pst.setString(9, (String)cboForeignLang.getSelectedItem());
+                    pst.setString(10, (String)cboOrientation.getSelectedItem());
+                    pst.setString(11, (String)cboSport.getSelectedItem());
+
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Student Pridaný.");
+                    UpdateDB();
+                } 
+                catch (ClassNotFoundException ex) {
+                    java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } 
+            }
+            
+            else{
+             JOptionPane.showMessageDialog(null, "StudentID pozostáva zo 6 znakov, telefónne číslo z 11(píšte bez medzier), Nesprávny syntax!");
+            }
+        }
+    }
+    /*KONIEC---Metóda pre zapis Studenta do databazy a nasledne vypisanie do tabulky*/
+    
+    /*Metoda na delete Studenta*/
+    public void DeleteStudent(){
+     DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
+       int SelectedRows = jTable1.getSelectedRow();
+       
+       try{
+           int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+           
+           int deleteItem = JOptionPane.showConfirmDialog(null, "Potvrdiť vymazanie", "Varovanie" , JOptionPane.YES_NO_OPTION);
+                  
+           
+           if(deleteItem == JOptionPane.YES_OPTION){
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("DELETE FROM studentdata WHERE id = ?");
+            
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            
+              UpdateDB();
+            
+                txtStudentID.setText("");
+                txtFirstname.setText("");
+                txtSurname.setText("");
+                txtAddress.setText("");
+                cboGender.setSelectedIndex(0);
+                txtMobile.setText("");
+                txtDateOfBirth.setText("");
+                cboClass.setSelectedIndex(0);
+                cboOrientation.setSelectedIndex(0);
+                cboSport.setSelectedIndex(0);
+                cboForeignLang.setSelectedIndex(0);
+           }
+       
+           
+        } 
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }  
+    
+    }
+    /*KONIEC----Metoda na delete Studenta*/
+    
+    
+    
+    
+    
     
     
     
@@ -542,6 +643,7 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1420, 650));
 
+        jPanel2.setBackground(new java.awt.Color(117, 219, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -589,6 +691,10 @@ public class StudentDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboGenderActionPerformed
 
+    
+    
+    
+    /*RESETOVANIE vyresetovanie policok*/
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtStudentID.setText("");
        txtFirstname.setText("");
@@ -608,47 +714,51 @@ public class StudentDatabase extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     
-    private JFrame frame;
+    /*EXPORT  -- data sa vyexportuju do txt.file*/
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       frame = new JFrame("exit");
-       if(JOptionPane.showConfirmDialog(frame,"Naozaj chcete ukončiť aplikáciu?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
-           System.exit(0);
-       }
+      
+      
+      try{
+          File file = new File("dataTable.txt");
+          if(!file.exists()){
+              file.createNewFile();
+          }
+          
+          
+          FileWriter fw = new FileWriter(file.getAbsoluteFile());
+          BufferedWriter bw = new BufferedWriter(fw);
+          
+          for(int i = 0 ; i < jTable1.getRowCount() ; i++){
+          
+              for(int j = 0 ; j < jTable1.getColumnCount() ; j++){
+              bw.write((String)jTable1.getModel().getValueAt(i,j) + " ");
+              
+              }
+              bw.write("\n____________\n");
+          }
+          
+          
+          bw.close();
+          fw.close();
+          JOptionPane.showMessageDialog(null, "Data úspešne odoslané");
+      }
+      
+      catch(Exception e){
+           JOptionPane.showMessageDialog(null, "Txt súbor nebol načítaný!");
+      }
     }//GEN-LAST:event_btnExitActionPerformed
-
+/*KONIEC----EXPORT  -- data sa vyexportuju do txt.file*/
+    
+    
+  /*PRIDANIE noveho studenta.. volanie metody v Action button*/  
     private void btnAddNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewActionPerformed
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("INSERT INTO studentdata(studentid, firstname, surname, dateofbirth, class, address, gender, mobile, foreignlang, orientation, sport)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, txtStudentID.getText());
-            pst.setString(2, txtFirstname.getText());
-            pst.setString(3, txtSurname.getText());
-            pst.setString(4, txtDateOfBirth.getText());
-            pst.setString(5, (String)cboClass.getSelectedItem());
-            pst.setString(6, txtAddress.getText());
-            pst.setString(7, (String)cboGender.getSelectedItem());
-            pst.setString(8, txtMobile.getText());
-            pst.setString(9, (String)cboForeignLang.getSelectedItem());
-            pst.setString(10, (String)cboOrientation.getSelectedItem());
-            pst.setString(11, (String)cboSport.getSelectedItem());
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Student Pridaný.");
-            UpdateDB();
-        } 
-        catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-        
+       AddStudent();
     }//GEN-LAST:event_btnAddNewActionPerformed
-
+    /*KONIEC -- PRIDANIE noveho studenta.. volanie metody v Action button*/  
     
     
     
-    
+    /*Zapísanie udajov z tabulky do bocneho panela*/
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
        
@@ -665,7 +775,7 @@ public class StudentDatabase extends javax.swing.JFrame {
        cboOrientation.setSelectedItem(RecordTable.getValueAt(SelectedRows,10).toString());
        cboSport.setSelectedItem(RecordTable.getValueAt(SelectedRows,11).toString());
     }//GEN-LAST:event_jTable1MouseClicked
-
+    /*KONIEC --- Zapísanie udajov z tabulky do bocneho panela*/
     
     
     
@@ -703,6 +813,9 @@ public class StudentDatabase extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    
+    
+    /*TLAČ -- na action button print*/
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         MessageFormat header = new MessageFormat("Prebieha Tlač!");
         MessageFormat footer = new MessageFormat("Prebieha Tlač!");
@@ -717,49 +830,16 @@ public class StudentDatabase extends javax.swing.JFrame {
         
   
     }//GEN-LAST:event_btnPrintActionPerformed
-
+    /*KONIEC -- TLAČ -- na action button print*/
+    
+    /*Button na delete Studenta*/
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
-       int SelectedRows = jTable1.getSelectedRow();
-       
-       try{
-           int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
-           
-           int deleteItem = JOptionPane.showConfirmDialog(null, "Potvrdiť vymazanie", "Varovanie" , JOptionPane.YES_NO_OPTION);
-                  
-           
-           if(deleteItem == JOptionPane.YES_OPTION){
-            Class.forName("com.mysql.jdbc.Driver");
-            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("DELETE FROM studentdata WHERE id = ?");
-            
-            pst.setInt(1, id);
-            pst.executeUpdate();
-            
-              UpdateDB();
-            
-           txtStudentID.setText("");
-       txtFirstname.setText("");
-       txtSurname.setText("");
-       txtAddress.setText("");
-       cboGender.setSelectedIndex(0);
-       txtMobile.setText("");
-       txtDateOfBirth.setText("");
-       cboClass.setSelectedIndex(0);
-       cboOrientation.setSelectedIndex(0);
-       cboSport.setSelectedIndex(0);
-       cboForeignLang.setSelectedIndex(0);
-           }
-       
-           
-        } 
-        catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            System.err.println(ex);
-        }  
+        DeleteStudent();
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+    /*KONIEC -- Button na delete Studenta*/
+    
+    
+    
     private void txtDateOfBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateOfBirthActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateOfBirthActionPerformed
@@ -780,12 +860,15 @@ public class StudentDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboClassActionPerformed
 
+    
+    
+    /*BACK button*/
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
       this.hide();
         new StartPage().setVisible(true);
        
     }//GEN-LAST:event_btnBackActionPerformed
-
+    /*KONIEC -- BACK button*/
     /**
      * @param args the command line arguments
      */

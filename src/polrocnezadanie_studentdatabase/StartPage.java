@@ -110,23 +110,33 @@ public class StartPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /*AKCIA na SPUSTENIE PROGRAMU*/
     private void StartMainProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartMainProgramActionPerformed
         this.hide();
         new StudentDatabase().setVisible(true);
     }//GEN-LAST:event_StartMainProgramActionPerformed
-
+    /*KONIEC -- AKCIA na NAVIGACIU*/
+    
+    
+    /*AKCIA na NAVIGACIU*/
     private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
         this.hide();
         new NapovedaPage().setVisible(true);
     }//GEN-LAST:event_btnGuideActionPerformed
-
+    /*KONIEC -- AKCIA na NAVIGACIU*/
+    
+    /*Ukoncenie programu-- vypnutie*/
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
        Frame frame = new JFrame("exit");
        if(JOptionPane.showConfirmDialog(frame,"Naozaj chcete ukončiť aplikáciu?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
            System.exit(0);
        }
     }//GEN-LAST:event_btnExitActionPerformed
-
+    /*KONIEC -- Ukoncenie programu-- vypnutie*/
+    
+    
+    
     /**
      * @param args the command line arguments
      */
