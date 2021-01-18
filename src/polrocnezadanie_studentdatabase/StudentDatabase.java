@@ -575,7 +575,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         });
 
         btnExit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        btnExit.setText("Odísť");
+        btnExit.setText("Export");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -784,33 +784,46 @@ public class StudentDatabase extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
        int SelectedRows = jTable1.getSelectedRow();
        
-       try{
-           int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
-            Class.forName("com.mysql.jdbc.Driver");
-            sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("UPDATE studentdata set studentid = ? , firstname = ? , surname = ? , dateofbirth = ?, class = ?, address = ? , gender = ? , mobile = ?, foreignlang = ?, orientation = ?, sport = ? WHERE id = ?");
-            pst.setString(1, txtStudentID.getText());
-            pst.setString(2, txtFirstname.getText());
-            pst.setString(3, txtSurname.getText());
-            pst.setString(4, txtDateOfBirth.getText());
-            pst.setString(5, (String)cboClass.getSelectedItem());
-            pst.setString(6, txtAddress.getText());
-            pst.setString(7, (String)cboGender.getSelectedItem());
-            pst.setString(8, txtMobile.getText());
-            pst.setString(9, (String)cboForeignLang.getSelectedItem());
-            pst.setString(10, (String)cboOrientation.getSelectedItem());
-            pst.setString(11, (String)cboSport.getSelectedItem());
-            pst.setInt(12, id);
+       if(txtStudentID.getText().length() < 1 || txtFirstname.getText().length() < 1 || txtSurname.getText().length() < 1 || txtAddress.getText().length() < 1){
+             JOptionPane.showMessageDialog(null, "StudentID, Meno, Priezvisko, Adresa nemôžu byť prázdne!");
             
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Edit prebehol úspešne");
-            UpdateDB();
-        } 
-        catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            System.err.println(ex);
-        }  
+        }
+        
+       else{
+       
+       
+                try{
+                    int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+                     Class.forName("com.mysql.jdbc.Driver");
+                     sqlConn = (Connection) DriverManager.getConnection(dataConn, username, password);
+                     pst = sqlConn.prepareStatement("UPDATE studentdata set studentid = ? , firstname = ? , surname = ? , dateofbirth = ?, class = ?, address = ? , gender = ? , mobile = ?, foreignlang = ?, orientation = ?, sport = ? WHERE id = ?");
+                     pst.setString(1, txtStudentID.getText());
+                     pst.setString(2, txtFirstname.getText());
+                     pst.setString(3, txtSurname.getText());
+                     pst.setString(4, txtDateOfBirth.getText());
+                     pst.setString(5, (String)cboClass.getSelectedItem());
+                     pst.setString(6, txtAddress.getText());
+                     pst.setString(7, (String)cboGender.getSelectedItem());
+                     pst.setString(8, txtMobile.getText());
+                     pst.setString(9, (String)cboForeignLang.getSelectedItem());
+                     pst.setString(10, (String)cboOrientation.getSelectedItem());
+                     pst.setString(11, (String)cboSport.getSelectedItem());
+                     pst.setInt(12, id);
+
+                     pst.executeUpdate();
+                     JOptionPane.showMessageDialog(this, "Edit prebehol úspešne");
+                     UpdateDB();
+                 } 
+                catch (ClassNotFoundException ex) {
+                    java.util.logging.Logger.getLogger(StudentDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    System.err.println(ex);
+                } 
+                
+           
+        
+         
+       }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     
