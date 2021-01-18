@@ -140,6 +140,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1450, 780));
@@ -424,6 +425,7 @@ public class StudentDatabase extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
+        btnDelete.setBackground(new java.awt.Color(204, 0, 0));
         btnDelete.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnDelete.setText("Vymazať");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -432,6 +434,7 @@ public class StudentDatabase extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setBackground(new java.awt.Color(0, 153, 204));
         btnReset.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnReset.setText("Vyčistiť");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -440,6 +443,7 @@ public class StudentDatabase extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setBackground(new java.awt.Color(204, 153, 0));
         btnUpdate.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnUpdate.setText("Editovať");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -448,6 +452,7 @@ public class StudentDatabase extends javax.swing.JFrame {
             }
         });
 
+        btnPrint.setBackground(new java.awt.Color(204, 204, 0));
         btnPrint.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnPrint.setText("Tlačiť");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -456,6 +461,7 @@ public class StudentDatabase extends javax.swing.JFrame {
             }
         });
 
+        btnAddNew.setBackground(new java.awt.Color(0, 204, 51));
         btnAddNew.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnAddNew.setText("Pridať Študenta");
         btnAddNew.addActionListener(new java.awt.event.ActionListener() {
@@ -534,27 +540,21 @@ public class StudentDatabase extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1420, 650));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setText("Systém na správu študentov");
         jLabel1.setToolTipText("");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 8, 590, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(437, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(379, 379, 379))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
-        );
+        btnBack.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnBack.setText("Späť");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 9, 120, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1410, 70));
 
@@ -777,6 +777,12 @@ public class StudentDatabase extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboClassActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+      this.hide();
+        new StartPage().setVisible(true);
+       
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -814,6 +820,7 @@ public class StudentDatabase extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNew;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPrint;
