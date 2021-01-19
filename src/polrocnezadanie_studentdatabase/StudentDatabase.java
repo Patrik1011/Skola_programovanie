@@ -88,7 +88,7 @@ public class StudentDatabase extends javax.swing.JFrame {
                     columnData.add(rs.getString("class"));
                     columnData.add(rs.getString("address"));
                     columnData.add(rs.getString("gender"));
-                    columnData.add(rs.getInt("mobile"));
+                    columnData.add(rs.getString("mobile"));
                     columnData.add(rs.getString("foreignlang"));
                     columnData.add(rs.getString("orientation"));
                     columnData.add(rs.getString("sport"));
@@ -716,14 +716,15 @@ public class StudentDatabase extends javax.swing.JFrame {
     
     /*EXPORT  -- data sa vyexportuju do txt.file*/
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-      
-      
-      try{
-          File file = new File("dataTable.txt");
-          if(!file.exists()){
+      UpdateDB();
+        
+        try{
+            
+          File file = new File("tableData.txt");
+          /*if(!file.exists()){
               file.createNewFile();
           }
-          
+          */
           
           FileWriter fw = new FileWriter(file.getAbsoluteFile());
           BufferedWriter bw = new BufferedWriter(fw);
@@ -817,7 +818,7 @@ public class StudentDatabase extends javax.swing.JFrame {
     
     /*TLAČ -- na action button print*/
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        MessageFormat header = new MessageFormat("Prebieha Tlač!");
+       MessageFormat header = new MessageFormat("Prebieha Tlač!");
         MessageFormat footer = new MessageFormat("Prebieha Tlač!");
         
         try{
@@ -828,6 +829,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         
         }
         
+     
   
     }//GEN-LAST:event_btnPrintActionPerformed
     /*KONIEC -- TLAČ -- na action button print*/
