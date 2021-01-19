@@ -112,7 +112,7 @@ public class StudentDatabase extends javax.swing.JFrame {
         
         else{
             
-            if(txtStudentID.getText().length() == 6 || txtMobile.getText().length() < 13 ){
+            if(txtStudentID.getText().length() == 6 && txtMobile.getText().length() < 13 ){
                 try{
 
 
@@ -195,16 +195,13 @@ public class StudentDatabase extends javax.swing.JFrame {
     /*KONIEC----Metoda na delete Studenta*/
     
     /*Funkcia pre Update Studenta*/
-        public void UpdateStudent(){
-             
+        public void UpdateStudent(){  
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();      
         int SelectedRows = jTable1.getSelectedRow();
         
             if(txtStudentID.getText().length() < 1 || txtFirstname.getText().length() < 1 || txtSurname.getText().length() < 1 || txtAddress.getText().length() < 1){
-             JOptionPane.showMessageDialog(null, "StudentID, Meno, Priezvisko, Adresa nemôžu byť prázdne!");
-            
-            }
-        
+             JOptionPane.showMessageDialog(null, "StudentID, Meno, Priezvisko, Adresa nemôžu byť prázdne!");         
+            }  
             else{
                 try{
                     int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -767,10 +764,10 @@ public class StudentDatabase extends javax.swing.JFrame {
         try{
             
           File file = new File("tableData.txt");
-          /*if(!file.exists()){
+          if(!file.exists()){
               file.createNewFile();
           }
-          */
+          
           
           FileWriter fw = new FileWriter(file.getAbsoluteFile());
           BufferedWriter bw = new BufferedWriter(fw);

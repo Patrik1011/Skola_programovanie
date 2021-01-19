@@ -1,6 +1,16 @@
-1 AD1223 Patrik Hoferica 12.2.2002 Nezaradený/á Mladeze Muž 421950443 Nezaradený/á náboženstvo Neoslobodený/á 
-____________
-3 AD1123 Jakub Cviklo 2.22.22 Nezaradený/á Neviem Žena 09320982 angličtina Nezaradený/á Nezaradený/á 
+1 AD1223 Patrik Dazd 12.2.2002 Nezaradený/á Mladeze 090 Muž 0950443231 Nezaradený/á náboženstvo Neoslobodený/á 
 ____________
 5 23876A Feranc Nikolaj 2.1.2020 I.AI Bratislava Nezaradený/á 097289712 angličtina etika Nezaradený/á 
+____________
+6 AJKH99 Silvia Slivkova 22.9.2004 I.AG Zilina, Stanična Žena 0950666834 angličtina etika Oslobodený/á 
+____________
+7 287KOA Martin Sneh 1.1.2000 I.AS Žilina 78 Muž 0976445123 nemčina náboženstvo Neoslobodený/á 
+____________
+8 AJKH09 Nikola Blatova 9.5.2002 IV.BI Sereď Žena 0950684999 angličtina Nezaradený/á Nezaradený/á 
+____________
+9 AKJH1 Janko Mrkvička 1.1.2000 I.AM Nábrežie 123 Muž 0967467898 angličtina Nezaradený/á Oslobodený/á 
+____________
+11 AKJJ99 Janko Jozko 1.1.2000 I.AM Nábrežie 222 Muž 09290908209890821 angličtina Nezaradený/á Oslobodený/á 
+____________
+12 KOAA7B Matej Matejovsky 9.8.2020 I.AS Matejovce Muž 096218762 nemčina Nezaradený/á Nezaradený/á 
 ____________
