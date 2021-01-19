@@ -538,7 +538,7 @@
                         <Column editable="true" title="Trieda" type="java.lang.String"/>
                         <Column editable="true" title="Adresa" type="java.lang.String"/>
                         <Column editable="true" title="Pohlavie" type="java.lang.String"/>
-                        <Column editable="true" title="Tel. &#x10d;&#xed;slo" type="java.lang.Integer"/>
+                        <Column editable="true" title="Tel. &#x10d;&#xed;slo" type="java.lang.String"/>
                         <Column editable="true" title="Cuzd&#xed; jazyk" type="java.lang.String"/>
                         <Column editable="true" title="N&#xe1;uka" type="java.lang.String"/>
                         <Column editable="true" title="Telocvik" type="java.lang.String"/>
@@ -675,7 +675,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Od&#xed;s&#x165;"/>
+                <Property name="text" type="java.lang.String" value="Export"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
